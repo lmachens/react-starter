@@ -4,13 +4,7 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: [
-    'react-app',
-    'react-app/jest',
-    'plugin:react/recommended',
-    'airbnb',
-    'prettier',
-  ],
+  extends: ['react-app/jest', 'plugin:react/recommended', 'airbnb', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -18,10 +12,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': 'off',
-    'prettier/prettier': 'warn',
   },
 };

@@ -12,8 +12,4 @@ module.exports = {
     'stylelint-config-styled-components',
     'stylelint-config-prettier',
   ],
-  plugins: ['stylelint-prettier'],
-  rules: {
-    'prettier/prettier': true,
-  },
 };
