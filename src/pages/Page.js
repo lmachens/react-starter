@@ -1,8 +1,78 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styled from 'styled-components/macro';
 import Header from '../components/Header';
-import './page.css';
+
+const Section = styled.section`
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 48px 20px;
+  margin: 0 auto;
+  max-width: 600px;
+  color: #333;
+
+  h2 {
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+    margin: 0 0 4px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #1ea7fd;
+  }
+
+  ul {
+    padding-left: 30px;
+    margin: 1em 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+`;
+
+const TipWrapper = styled.div`
+  font-size: 13px;
+  line-height: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  svg {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin-right: 4px;
+    vertical-align: top;
+    margin-top: 3px;
+  }
+
+  svg path {
+    fill: #1ea7fd;
+  }
+`;
+
+const Tip = styled.span`
+  display: inline-block;
+  border-radius: 1em;
+  font-size: 11px;
+  line-height: 12px;
+  font-weight: 700;
+  background: #e7fdd8;
+  color: #66bf3c;
+  padding: 4px 12px;
+  margin-right: 10px;
+  vertical-align: top;
+`;
 
 const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (
   <article>
@@ -12,7 +82,7 @@ const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (
       onLogout={onLogout}
       onCreateAccount={onCreateAccount}
     />
-    <section>
+    <Section>
       <h2>Pages in Storybook</h2>
       <p>
         We recommend building UIs with a
@@ -59,8 +129,8 @@ const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (
         </a>
         .
       </p>
-      <div className="tip-wrapper">
-        <span className="tip">Tip</span>
+      <TipWrapper>
+        <Tip>Tip</Tip>
         Adjust the width of the canvas with the
         <svg
           width="10"
@@ -77,10 +147,11 @@ const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (
           </g>
         </svg>
         Viewports addon in the toolbar
-      </div>
-    </section>
+      </TipWrapper>
+    </Section>
   </article>
 );
+
 Page.propTypes = {
   user: PropTypes.shape({}),
   onLogin: PropTypes.func.isRequired,

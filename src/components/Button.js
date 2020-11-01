@@ -1,25 +1,60 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './button.css';
+import styled, { css } from 'styled-components/macro';
+
+const primaryMixin = css`
+  color: white;
+  background-color: #1ea7fd;
+`;
+
+const secondaryMixin = css`
+  color: #333;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+`;
+
+const sizes = {
+  small: css`
+    font-size: 12px;
+    padding: 10px 16px;
+  `,
+  medium: css`
+    font-size: 14px;
+    padding: 11px 20px;
+  `,
+  large: css`
+    font-size: 16px;
+    padding: 12px 24px;
+  `,
+};
+
+const StorybookButton = styled.button`
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+
+  ${(props) => (props.primary ? primaryMixin : secondaryMixin)};
+  ${(props) => sizes[props.size]};
+`;
 
 /**
  * Primary UI component for user interaction
  */
 const Button = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary
-    ? 'storybook-button--primary'
-    : 'storybook-button--secondary';
   return (
-    <button
+    <StorybookButton
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(
-        ' '
-      )}
+      primary={primary}
+      size={size}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
       {label}
-    </button>
+    </StorybookButton>
   );
 };
 
