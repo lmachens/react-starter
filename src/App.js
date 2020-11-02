@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components/macro';
+import { useState } from 'react';
+import styled, { keyframes, ThemeProvider } from 'styled-components/macro';
 import GlobalStyle from './GlobalStyle';
 import logo from './logo.svg';
 
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
   text-align: center;
 
   header {
-    background-color: #282c34;
+    background: ${(props) => props.theme.backgroundColor};
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -38,14 +39,32 @@ const Wrapper = styled.div`
 `;
 
 const Link = styled.a`
-  color: #61dafb;
+  color: ${(props) => props.theme.primaryColor};
 `;
 
+const crazy = {
+  primaryColor: 'mediumseagreen',
+  backgroundColor: 'palevioletred',
+};
+
+const sad = {
+  primaryColor: '#333',
+  backgroundColor: '#999',
+};
+
 function App() {
+  const [theme, setTheme] = useState(crazy);
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Wrapper>
+        <button
+          type="button"
+          onClick={() => setTheme(theme === crazy ? sad : crazy)}
+        >
+          Toggle Theme
+        </button>
         <header>
           <img src={logo} alt="logo" />
           <p>
@@ -62,7 +81,7 @@ function App() {
           </Link>
         </header>
       </Wrapper>
-    </>
+    </ThemeProvider>
   );
 }
 
